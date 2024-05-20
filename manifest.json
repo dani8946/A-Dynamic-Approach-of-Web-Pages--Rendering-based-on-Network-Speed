@@ -1,0 +1,37 @@
+{
+    "manifest_version": 2,
+    "name": "Network Optimizer",
+    "version": "0.0.1",
+    "description": "A Chrome extension that measures network speed and minimizes website content if the speed is below a certain threshold.",
+    "browser_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "128": "small.png"
+      }
+    },
+    "background": {
+      "scripts": ["localScript.js"],
+      "persistent": true
+    },
+    "icons": {
+      "128": "small.png"
+    },
+    "permissions": [
+      "http://localhost:4000/",
+      "webStorage",
+      "storage",
+      "tabs",
+      "activeTab"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"]
+      },
+      {
+        "matches": ["<all_urls>"],
+        "js": ["contentScript1.js"]
+      }
+    ]
+  }
+  
