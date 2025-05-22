@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     const averageSpeedMbps = totalSpeedMbps / numberOfFetches;
                     testResultsDiv.innerText = `Network speed: ${averageSpeedMbps.toFixed(2)} Mbps`;
 
-                    if(1 < averageSpeedMbps < 1000 && !captionsGenerated) { // Check if captions are not already generated
+                    if(1 < averageSpeedMbps < 2 && !captionsGenerated) { // Check if captions are not already generated
                         testResultsDiv.innerText += "\nAttempting to minify and captionise.. ";
                         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                             chrome.tabs.sendMessage(tabs[0].id, { action: "minifyandcaptionContent", networkSpeed: speedMbps });
                             captionsGenerated = true; // Mark captions as generated
                         });
                     }
-                    else if( 100 < averageSpeedMbps < 5000 && !captionsGenerated) { // Check if captions are not already generated
+                    else if( 2 < averageSpeedMbps < 5 && !captionsGenerated) { // Check if captions are not already generated
                         testResultsDiv.innerText += "\nAttempting to minify and compress...";
                         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                             chrome.tabs.sendMessage(tabs[0].id, { action: "minifyandcaptionContent", networkSpeed: speedMbps });
