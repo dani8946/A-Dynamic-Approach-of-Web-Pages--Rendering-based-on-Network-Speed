@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const averageSpeedMbps = totalSpeedMbps / numberOfFetches;
                     testResultsDiv.innerText = `Network speed: ${averageSpeedMbps.toFixed(2)} Mbps`;
 
-                    if(1 < averageSpeedMbps < 2 && !captionsGenerated) { // Check if captions are not already generated
+                    if(0.1 < averageSpeedMbps < 2 && !captionsGenerated) { // Check if captions are not already generated
                         testResultsDiv.innerText += "\nAttempting to minify and captionise.. ";
                         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                             chrome.tabs.sendMessage(tabs[0].id, { action: "minifyandcaptionContent", networkSpeed: speedMbps });
